@@ -1,0 +1,101 @@
+
+.pianoStack {
+    position: relative;
+    margin-left: -1px;
+    width: 168px;
+    height: 80px;
+}
+
+.whiteOctave {
+    position: absolute;
+    z-index:100;
+    top:0;
+    left:0;
+    display: grid;
+    grid-template-columns: repeat(7, 24px);
+    grid-template-rows: 80px;
+    grid-template-areas: 'C D E F G A B';
+}
+
+.blackOctave {
+    position: absolute;
+    z-index:200;
+    top:0;
+    left:0;
+    display: grid;
+    grid-template-columns: repeat(20, 8px);
+    grid-template-rows: 55px 35px;
+    pointer-events: none;
+    grid-template-areas: '. . Cs Cs . Ds Ds . . . . Fs Fs . Gs Gs . As As .'
+                         '. . .  .  . .  .  . . . . .  .  . .  .  . .  .  .';
+}
+
+.white {
+    background-color: #FFF;
+    border-left: 1px solid #000;
+    border-bottom: 1px solid #000;
+    background-blend-mode: lighten;
+    &:hover {
+        background-blend-mode: normal;
+    }
+}
+
+.white:last-child {
+    border-right: 1px solid #000;
+}
+
+.black {
+   background-color: #FFF;
+   pointer-events: all;
+   &:hover {
+    background-color: #000;
+   }
+}
+
+.whiteC {
+    grid-area: C;
+}
+
+.blackCs {
+    grid-area: Cs;
+}
+
+.whiteD {
+    grid-area: D;
+}
+
+.blackDs {
+    grid-area: Ds;
+}
+
+.whiteE {
+    grid-area: E;
+}
+
+.whiteF {
+    grid-area: F;
+}
+
+.blackFs {
+    grid-area: Fs;
+}
+
+.whiteG {
+    grid-area: G;
+}
+
+.blackGs {
+    grid-area: Gs;
+}
+
+.whiteA {
+    grid-area: A;
+}
+
+.blackAs {
+    grid-area: As;
+}
+
+.whiteB {
+    grid-area: B;
+}

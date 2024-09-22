@@ -2,13 +2,13 @@
 import styles from './page.module.css';
 import MainHeader from './components/main-header/main-header.component';
 import StylishWindow from './components/stylish-window/stylish-window.component';
-import { getDitheringImg } from './canvas-magic/dithering';
+import { getDarkDitheringImg, getLightDitheringImg, getLightDitheringImg2, getLightDitheringImg3 } from './canvas-magic/dithering';
 import { useState } from 'react';
 
 const Home = () => {
 
   const [backgroundImage, setBackgroundImage] = useState<string>('');
-  getDitheringImg().then((ditheredImage) => {
+  getLightDitheringImg3().then((ditheredImage) => {
     setBackgroundImage(ditheredImage);
   });
 

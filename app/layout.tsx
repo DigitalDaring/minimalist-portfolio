@@ -21,7 +21,9 @@ export default function RootLayout({
     <html lang='en'>
       <body className={`${chakraPetch.className}`}>
         {children}
-        <canvas id='dithering' width='20px' height='20px' className='letsNotShowThis'/>
+        <canvas id='darkDithering' width='20px' height='20px' className='letsNotShowThis'/>
+        <canvas id='lightDithering2' width='16px' height='16px' className='letsNotShowThis'/>
+        <canvas id='lightDithering' width='16px' height='16px' className='letsNotShowThis'/>
         <canvas id='lines' width='20px' height='20px' className='letsNotShowThis'/>
       </body>
     </html>
