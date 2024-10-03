@@ -1,6 +1,6 @@
-import { getDarkDitheringImg, getLightDitheringImg2, getLightDitheringImg3 } from '@/app/canvas-magic/dithering';
+import { getDitheringImg1, getDitheringImg2, getDitheringImg3, getDitheringImg4 } from '@/app/canvas-magic/dithering';
 import styles from './piano-octave.component.module.scss';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 const PianoOctave = () => {
 
     const whiteC = [styles.white, styles.whiteC].join(' ');
@@ -19,13 +19,17 @@ const PianoOctave = () => {
     const [darkBackground, setDarkBackground] = useState<string>('');
     const [lightBackground, setLightBackground] = useState<string>('');
 
-    getDarkDitheringImg().then((img) => {
-        setDarkBackground(img);
-    });
+    useEffect(() => {
+        getDitheringImg1().then((img) => {
+            setDarkBackground(img);
+        });
+    
+        getDitheringImg3().then((img) => {
+            setLightBackground(img);
+        });
+    }, []);
 
-    getLightDitheringImg2().then((img) => {
-        setLightBackground(img);
-    });
+    
 
     return  <div className={styles.pianoStack}>
                 <div className={styles.whiteOctave}>

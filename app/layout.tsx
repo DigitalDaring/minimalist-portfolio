@@ -1,6 +1,24 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { Chakra_Petch } from 'next/font/google'
+import setupWindowBackgrounds from './canvas-magic/window-setup';
+
+declare global {
+  interface Window { 
+    backgrounds: {
+      dithered1: string,
+      dithered2: string,
+      dithered3: string,
+      dithered4: string,
+      lines: string
+    },
+    icons: {
+      folder: string
+    }
+  }
+}
+
+setupWindowBackgrounds();
 
 const chakraPetch = Chakra_Petch({
   weight: '400',
@@ -21,10 +39,13 @@ export default function RootLayout({
     <html lang='en'>
       <body className={`${chakraPetch.className}`}>
         {children}
-        <canvas id='darkDithering' width='20px' height='20px' className='letsNotShowThis'/>
-        <canvas id='lightDithering2' width='16px' height='16px' className='letsNotShowThis'/>
-        <canvas id='lightDithering' width='16px' height='16px' className='letsNotShowThis'/>
+        <canvas id='dithering1' width='20px' height='20px' className='letsNotShowThis'/>
+        <canvas id='dithering2' width='16px' height='16px' className='letsNotShowThis'/>
+        <canvas id='dithering3' width='16px' height='16px' className='letsNotShowThis'/>
+        <canvas id='dithering4' width='16px' height='16px' className='letsNotShowThis'/>
         <canvas id='lines' width='20px' height='20px' className='letsNotShowThis'/>
+        <canvas id='folderIcon' width='40px' height='30px' className='letsNotShowThis'/>
+        <canvas id='fileIcon' width='30px' height='50px' className='letsNotShowThis'/>
       </body>
     </html>
   );
