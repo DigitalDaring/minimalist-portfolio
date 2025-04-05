@@ -8,10 +8,40 @@ import PianoOctave from './components/piano-octave/piano-octave.component';
 import LanguagesOverview from './components/languages-overview/languages-overview.component';
 import FrameworksOverview from './components/frameworks-overview/frameworks-overview.component';
 import DatabasesOverview from './components/databases-overview/databases-overview.component';
+import SimpleModal from './components/simple-modal/simple-modal.component';
+import CloseIcon from './components/icons/close-icon.component';
+
+type ModalState = {
+  text: string;
+  title: string;
+  isVisible: boolean;
+}
 
 const Home = () => {
 
   const [backgroundImage, setBackgroundImage] = useState<string>('');
+  const [modalState, setModalState] = useState<ModalState>({
+    text: '',
+    title: '',
+    isVisible: false
+  });
+
+  const closeModal = () => {
+    setModalState({
+      ...modalState,
+      isVisible: false
+    });
+  };
+
+  const showModal = (text: string, title: string) => {
+    setModalState({
+      ...modalState,
+      text,
+      title,
+      isVisible: true
+    });
+  };
+
   useEffect(() => {
     getDitheringImg4().then((ditheredImage) => {
       setBackgroundImage(ditheredImage);
@@ -20,6 +50,13 @@ const Home = () => {
 
   return (
     <div className={styles.crtPage}>
+      <SimpleModal isVisible={modalState.isVisible}>
+        <CloseIcon onClick={closeModal}/>
+        <h2>{modalState.title}</h2>
+        <p>
+          {modalState.text}
+        </p>
+      </SimpleModal>
       <MainHeader></MainHeader>
       <main className={styles.main} style={{backgroundImage: `url(${backgroundImage})`}}>
         <section className={styles.windows}>
@@ -28,7 +65,7 @@ const Home = () => {
               subtitle1=''
               subtitle2=''
               subtitle3=''
-              content={<LanguagesOverview/>}
+              content={<LanguagesOverview onClick={showModal}/>}
               >
           </StylishWindow>
           <StylishWindow 
@@ -36,7 +73,7 @@ const Home = () => {
               subtitle1=''
               subtitle2=''
               subtitle3=''
-              content={<FrameworksOverview/>}
+              content={<FrameworksOverview onClick={showModal}/>}
               >
           </StylishWindow>
           <StylishWindow 
@@ -44,7 +81,7 @@ const Home = () => {
               subtitle1=''
               subtitle2=''
               subtitle3=''
-              content={<DatabasesOverview/>}
+              content={<DatabasesOverview onClick={showModal}/>}
               >
           </StylishWindow>
           <StylishWindow 

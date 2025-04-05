@@ -1,6 +1,11 @@
 import FileIcon from '../icons/file-icon.component';
 import styles from './frameworks-overview.component.module.scss';
-const DatabasesOverview = () => {
+
+type DatabasesOverviewProps = {
+    onClick: (text: string, title: string) => void;
+};
+
+const DatabasesOverview = ({onClick}: DatabasesOverviewProps) => {
     return <ul className={styles.databaseList}>
         <li>
             <FileIcon></FileIcon>

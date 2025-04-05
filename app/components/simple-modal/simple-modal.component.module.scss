@@ -1,0 +1,28 @@
+.simpleModal {
+    opacity: 0;
+    pointer-events: none;
+    display: none;
+
+    position: absolute;
+    top: 30%;
+    left: 30%;
+    width: 40%;
+    height: 40%;
+
+    min-width: 300px;
+    min-height: 200px;
+
+    border: 1px solid #000;
+    background-color: #FFF;
+    box-shadow: 3px 4px 0px #000;
+    z-index: 9999;
+
+    padding: 12px;
+}
+
+.visible.simpleModal {
+    opacity: 1;
+    pointer-events: inherit;
+    display: flex;
+    flex-direction: column;
+}

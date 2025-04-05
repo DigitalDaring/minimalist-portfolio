@@ -1,7 +1,11 @@
 import FolderIcon from '../icons/folder-icon.component';
 import styles from './frameworks-overview.component.module.scss';
 
-const FrameworksOverview = () => {
+type FrameworksOverviewProps = {
+    onClick: (text: string, title: string) => void;
+};
+
+const FrameworksOverview = ({onClick}: FrameworksOverviewProps) => {
 
     return <ul className={styles.frameworkList}>
         <li>

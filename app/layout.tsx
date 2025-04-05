@@ -48,6 +48,8 @@ export default function RootLayout({
         <canvas id='fileIcon' width='30px' height='50px' className='letsNotShowThis'/>
         <canvas id='invertedFileIcon' width='30px' height='50px' className='letsNotShowThis'/>
         <canvas id='invertedFolderIcon' width='40px' height='30px' className='letsNotShowThis'/>
+        <canvas id='closeIcon' width='30px' height='30px' className='letsNotShowThis'/>
+        <canvas id='invertedCloseIcon' width='30px' height='30px' className='letsNotShowThis'/>
       </body>
     </html>
   );
