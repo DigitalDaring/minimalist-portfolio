@@ -1,5 +1,6 @@
 import FolderIcon from '../icons/folder-icon.component';
 import styles from './frameworks-overview.component.module.scss';
+import windowStyles from '../../styles/window.module.scss';
 
 type FrameworksOverviewProps = {
     onClick: (text: string, title: string) => void;
@@ -7,7 +8,9 @@ type FrameworksOverviewProps = {
 
 const FrameworksOverview = ({onClick}: FrameworksOverviewProps) => {
 
-    return <ul className={styles.frameworkList}>
+    const classes = [styles.frameworkList, windowStyles.window];
+
+    return <ul className={classes.join(' ')}>
         <li>
             <FolderIcon></FolderIcon>
             React / Next

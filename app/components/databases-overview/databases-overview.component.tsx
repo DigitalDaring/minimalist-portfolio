@@ -1,12 +1,16 @@
 import FileIcon from '../icons/file-icon.component';
 import styles from './frameworks-overview.component.module.scss';
+import windowStyles from '../../styles/window.module.scss';
 
 type DatabasesOverviewProps = {
     onClick: (text: string, title: string) => void;
 };
 
 const DatabasesOverview = ({onClick}: DatabasesOverviewProps) => {
-    return <ul className={styles.databaseList}>
+
+    const classes = [styles.databaseList, windowStyles.window];
+
+    return <ul className={classes.join(' ')}>
         <li>
             <FileIcon></FileIcon>
             MongoDB

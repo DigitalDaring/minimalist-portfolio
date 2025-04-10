@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { Chakra_Petch } from 'next/font/google'
 import setupWindowBackgrounds from './canvas-magic/window-setup';
+import { generateSpriteSheet } from './canvas-magic/icons';
 
 declare global {
   interface Window { 
@@ -39,6 +40,7 @@ export default function RootLayout({
     <html lang='en'>
       <body className={`${chakraPetch.className}`}>
         {children}
+        <canvas id='spriteMap' width='400px' height='400px' className=''/>
         <canvas id='dithering1' width='20px' height='20px' className='letsNotShowThis'/>
         <canvas id='dithering2' width='16px' height='16px' className='letsNotShowThis'/>
         <canvas id='dithering3' width='16px' height='16px' className='letsNotShowThis'/>

@@ -10,6 +10,7 @@ import FrameworksOverview from './components/frameworks-overview/frameworks-over
 import DatabasesOverview from './components/databases-overview/databases-overview.component';
 import SimpleModal from './components/simple-modal/simple-modal.component';
 import CloseIcon from './components/icons/close-icon.component';
+import { generateSpriteSheet } from './canvas-magic/icons';
 
 type ModalState = {
   text: string;
@@ -43,6 +44,8 @@ const Home = () => {
   };
 
   useEffect(() => {
+    generateSpriteSheet();
+
     getDitheringImg4().then((ditheredImage) => {
       setBackgroundImage(ditheredImage);
     });

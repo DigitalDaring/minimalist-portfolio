@@ -1,12 +1,15 @@
 import FileIcon from '../icons/file-icon.component';
 import styles from './languages-overview.component.module.scss';
+import windowStyles from '../../styles/window.module.scss';
 
 type LanguagesOverviewProps = {
     onClick: (text: string, title: string) => void;
 };
 
 const LanguagesOverview = ({onClick}: LanguagesOverviewProps) => {
-    return <ul className={styles.languagesList}>
+    const classes = [styles.languagesList, windowStyles.window];
+
+    return <ul className={classes.join(' ')}>
         <li onClick={() => onClick('TypeScript: 6 years', 'TS')}>
             <FileIcon></FileIcon>
             TypeScript
