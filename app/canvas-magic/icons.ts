@@ -220,31 +220,9 @@ const invertedCloseIcon = [
     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 ];
 
-const getFolderIcon = () => {
-    return getIcon(folderIcon, 'folderIcon');
-}
+let isSpriteSheetGenerated = false;
 
-const getInvertedFolderIcon = () => {
-    return getIcon(invertedFolderIcon, 'invertedFolderIcon');
-}
-
-const getFileIcon = () => {
-    return getIcon(fileIcon, 'fileIcon');
-}
-
-const getInvertedFileIcon = () => {
-    return getIcon(invertedFileIcon, 'invertedFileIcon');
-}
-
-const getCloseIcon = () => {
-    return getIcon(closeIcon, 'closeIcon');
-}
-
-const getInvertedCloseIcon = () => {
-    return getIcon(invertedCloseIcon, 'invertedCloseIcon');
-}
-
-const generateSpriteSheet = () => {
+const generateSpriteSheet = (): Promise<string> => {
 
     const allIcons = [folderIcon, invertedFolderIcon, fileIcon, invertedFileIcon, closeIcon, invertedCloseIcon];
     const renderQueue = allIcons.map((icon) => ({
@@ -253,40 +231,45 @@ const generateSpriteSheet = () => {
         icon
     }));
 
-    window.setTimeout(() => {
+    const promise = new Promise<string>((resolve => {
+        window.setTimeout(() => {
 
-        let offsetX = 0;
-        let maxOffsetY = 0;
-        let offsetY = 0;
-
-        setupWindowBackgrounds();
-
-
-        const canvas = document.getElementById('spriteMap') as HTMLCanvasElement;
-        // I control the vertical, and the horizontal!
-        // therefore force non-null cuz I know I added that element :-D
-        const context = canvas!.getContext('2d')!;
-        context.strokeStyle = 'rgba(0,0,0,1)';
-        renderQueue.forEach((toRender) => {
-            for(let x = 0; x < toRender.width; x++) {
-                for (let y = 0; y < toRender.height; y++) {
-                    if (toRender.icon[y][x] === 1) {
-                        context.fillRect(x + offsetX, y + offsetY, 1, 1);
+            let offsetX = 0;
+            let maxOffsetY = 0;
+            let offsetY = 0;
+    
+            setupWindowBackgrounds();
+    
+            const canvas = document.getElementById('spriteMap') as HTMLCanvasElement;
+            // I control the vertical, and the horizontal!
+            // therefore force non-null cuz I know I added that element :-D
+            const context = canvas!.getContext('2d')!;
+            context.strokeStyle = 'rgba(0,0,0,1)';
+            renderQueue.forEach((toRender) => {
+                for(let x = 0; x < toRender.width; x++) {
+                    for (let y = 0; y < toRender.height; y++) {
+                        if (toRender.icon[y][x] === 1) {
+                            context.fillRect(x + offsetX, y + offsetY, 1, 1);
+                        }
                     }
                 }
-            }
+    
+                const wouldOverflow = offsetX + toRender.width > 400;
+                offsetX += toRender.width;
+                maxOffsetY = Math.max(maxOffsetY, toRender.height);
+                if (wouldOverflow) {
+                    offsetY += maxOffsetY;
+                    offsetX = 0;
+                }
+            });
+    
+            const img = canvas.toDataURL('image/gif');
+            isSpriteSheetGenerated = true;
+            resolve(img);
+        }, 0);
+    }));
 
-            const wouldOverflow = offsetX + toRender.width > 400;
-            offsetX += toRender.width;
-            maxOffsetY = Math.max(maxOffsetY, toRender.height);
-            if (wouldOverflow) {
-                offsetY += maxOffsetY;
-                offsetX = 0;
-            }
-        });
-
-        const img = canvas.toDataURL('image/gif');
-    }, 0);
+    return promise;
 }
 
 const getIcon = (icon: Array<number[]>, iconCanvasName: string) => {
@@ -324,11 +307,5 @@ const getIcon = (icon: Array<number[]>, iconCanvasName: string) => {
 }
 
 export {
-    getFolderIcon,
-    getFileIcon,
-    getInvertedFileIcon,
-    getInvertedFolderIcon,
-    getCloseIcon,
-    getInvertedCloseIcon,
     generateSpriteSheet
 };

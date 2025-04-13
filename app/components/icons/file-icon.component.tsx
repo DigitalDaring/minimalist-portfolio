@@ -1,34 +1,23 @@
-import {getFileIcon, getInvertedFileIcon} from '@/app/canvas-magic/icons';
-import { useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import styles from './icons.module.scss';
+import { PageContext } from '@/app/context';
 
+const normalOffset = -80;
+const hoverOffset = -110;
 const FileIcon = () => {
-    const [fileIcon, setFileIcon] = useState<string>('');
-    const [invertedFileIcon, setInvertedFileIcon] = useState<string>('');
-    const [currentIcon, setCurrentIcon] = useState<string>('');
+    const [backgroundOffset, setBackgroundOffset] = useState({x: normalOffset, y: 0});
 
-    useEffect(() => {
-        getFileIcon().then((icon) => {
-            setFileIcon(icon);
-            setCurrentIcon(icon);
-        });
-
-        getInvertedFileIcon().then((invertedIcon) => {
-            setInvertedFileIcon(invertedIcon);
-        });
-    }, []);
+    const {spriteSheet} = useContext(PageContext);
 
     const enableHoverEffect = () => {
-       const newIcon = `${invertedFileIcon}`;
-       setCurrentIcon(newIcon);
+       setBackgroundOffset({...backgroundOffset, x: hoverOffset});
     }
 
     const disableHoverEffect = () => {
-        const newIcon = `${fileIcon}`;
-       setCurrentIcon(newIcon);
+        setBackgroundOffset({...backgroundOffset, x: normalOffset});
     }
 
-    return <div onClick={enableHoverEffect} onMouseEnter={() => enableHoverEffect()} onMouseLeave={disableHoverEffect} className={styles.fileIcon} style={{backgroundImage: `url(${currentIcon})`}}></div>;
+    return <div onClick={enableHoverEffect} onMouseEnter={() => enableHoverEffect()} onMouseLeave={disableHoverEffect} className={styles.fileIcon} style={{backgroundPositionX: `${backgroundOffset.x}px`, backgroundPositionY: `${backgroundOffset.y}px`, backgroundImage: `url(${spriteSheet})`}}></div>;
 };
 
 export default FileIcon;

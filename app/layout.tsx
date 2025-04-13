@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { Chakra_Petch } from 'next/font/google'
 import setupWindowBackgrounds from './canvas-magic/window-setup';
-import { generateSpriteSheet } from './canvas-magic/icons';
 
 declare global {
   interface Window { 
@@ -36,22 +35,17 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
     <html lang='en'>
       <body className={`${chakraPetch.className}`}>
         {children}
-        <canvas id='spriteMap' width='400px' height='400px' className=''/>
+        <canvas id='spriteMap' width='400px' height='400px' className='letsNotShowThis'/>
         <canvas id='dithering1' width='20px' height='20px' className='letsNotShowThis'/>
         <canvas id='dithering2' width='16px' height='16px' className='letsNotShowThis'/>
         <canvas id='dithering3' width='16px' height='16px' className='letsNotShowThis'/>
         <canvas id='dithering4' width='16px' height='16px' className='letsNotShowThis'/>
         <canvas id='lines' width='20px' height='20px' className='letsNotShowThis'/>
-        <canvas id='folderIcon' width='40px' height='30px' className='letsNotShowThis'/>
-        <canvas id='fileIcon' width='30px' height='50px' className='letsNotShowThis'/>
-        <canvas id='invertedFileIcon' width='30px' height='50px' className='letsNotShowThis'/>
-        <canvas id='invertedFolderIcon' width='40px' height='30px' className='letsNotShowThis'/>
-        <canvas id='closeIcon' width='30px' height='30px' className='letsNotShowThis'/>
-        <canvas id='invertedCloseIcon' width='30px' height='30px' className='letsNotShowThis'/>
       </body>
     </html>
   );
