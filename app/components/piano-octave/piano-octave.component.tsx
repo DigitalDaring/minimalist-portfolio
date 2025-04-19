@@ -1,3 +1,5 @@
+'use client';
+
 import { getDitheringImg1, getDitheringImg2, getDitheringImg3, getDitheringImg4 } from '@/app/canvas-magic/dithering';
 import styles from './piano-octave.component.module.scss';
 import { useEffect, useState } from 'react';
