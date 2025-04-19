@@ -62,7 +62,7 @@ export const Skills = {
         title: 'C#',
         experience: '12 years',
         details: [
-            `C# and I go way back.  I have been developing in C# in 2004 when the Mono framework was first released.  I have used C# and the .Net framework to build production applications for `
+            `C# and I go way back.  I have been developing in C# in 2004 when the Mono framework was first released.  I have used C# and the .Net framework to build applications at many companies, including for Raymond James and R. R. Donnelley.`
         ]
     },
     [LANGUAGES_AND_FRAMEWORKS.SWIFT]: {
