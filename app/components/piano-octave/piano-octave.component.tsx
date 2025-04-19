@@ -13,7 +13,6 @@ type PianoState = {
 
 const PianoOctave = () => {
 
-    let globalAudioContext = (window as any).globalAudioContext;
     const [pianoState, setPianoState] = useState<PianoState>({
         readyToPlay: false, audioContext: undefined
     })
@@ -22,13 +21,18 @@ const PianoOctave = () => {
         setPianoState({readyToPlay: true, audioContext});
     }
 
-    if (globalAudioContext == null) {
-        globalAudioContext = new window.AudioContext();
-        (window as any).globalAudioContext = globalAudioContext;
-        unmute(globalAudioContext, () => whenReadyToPlay(globalAudioContext));
-    } else if (!pianoState.readyToPlay && pianoState.audioContext == null){
-        whenReadyToPlay(globalAudioContext)
-    }
+
+    useEffect(() => {
+        let globalAudioContext = (window as any).globalAudioContext;
+        if (globalAudioContext == null) {
+            globalAudioContext = new window.AudioContext();
+            (window as any).globalAudioContext = globalAudioContext;
+            unmute(globalAudioContext, () => whenReadyToPlay(globalAudioContext));
+        } else if (!pianoState.readyToPlay && pianoState.audioContext == null){
+            whenReadyToPlay(globalAudioContext)
+        }
+    }, []);
+    
 
     const whiteC = [styles.white, styles.whiteC].join(' ');
     const blackCs = [styles.black, styles.blackCs].join(' ');

@@ -1,5 +1,3 @@
-'use client'
-
 import setupWindowBackgrounds from './window-setup';
 
 export enum BACKGROUND_IMG_NAME {

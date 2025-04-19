@@ -1,4 +1,3 @@
-'use client';
 import setupWindowBackgrounds from './window-setup';
 
 

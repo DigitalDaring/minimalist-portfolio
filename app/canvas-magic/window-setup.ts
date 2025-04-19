@@ -1,5 +1,3 @@
-'use client';
-
 const setupWindowBackgrounds = () => {
     if (typeof window !== 'undefined') {
         window.backgrounds = window.backgrounds || {
