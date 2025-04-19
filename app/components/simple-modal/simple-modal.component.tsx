@@ -3,18 +3,24 @@ import styles from './simple-modal.component.module.scss';
 
 export type SimpleModalProps = {
     children: ReactNode,
-    isVisible: boolean
+    isVisible: boolean,
+    isClosing: boolean,
 }
 
-const SimpleModal = ({children, isVisible}: SimpleModalProps) => {
+const SimpleModal = ({children, isVisible, isClosing}: SimpleModalProps) => {
 
-    const classes = [styles.simpleModal];
+    const classes = [styles.blurBackground];
     if (isVisible) {
         classes.push(styles.visible);
-    }
 
+        if (isClosing) {
+            classes.push(styles.animateOut);
+        }
+    }
     return <section className={classes.join(' ')}>
-        {children}
+        <section className={styles.simpleModal}>
+            {children}
+        </section>
     </section>
     
 }

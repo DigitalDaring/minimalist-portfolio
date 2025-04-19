@@ -14,20 +14,25 @@ import CloseIcon from './components/icons/close-icon.component';
 import { generateSpriteSheet } from './canvas-magic/icons';
 import { PortfolioContext, PageContext } from './context';
 import { LANGUAGES_AND_FRAMEWORKS, Skills } from './models/skills';
+import {unmute} from './sound-magic/unmute';
 
 type ModalState = {
-  text: string;
   title: string;
+  experience: string;
+  details: string[];
   isVisible: boolean;
+  isClosing: boolean;
 }
 
 const Home = () => {
 
   const [backgroundImage, setBackgroundImage] = useState<string>('');
   const [modalState, setModalState] = useState<ModalState>({
-    text: '',
     title: '',
-    isVisible: false
+    experience: '',
+    details: [],
+    isVisible: false,
+    isClosing: false
   });
 
   const [contextState, setContextState] = useState<PortfolioContext>({
@@ -37,8 +42,17 @@ const Home = () => {
   const closeModal = () => {
     setModalState({
       ...modalState,
-      isVisible: false
+      isVisible: true,
+      isClosing: true
     });
+
+    window.setTimeout(() => {
+      setModalState({
+        ...modalState,
+        isVisible: false,
+        isClosing: false
+      });
+    }, 500);
   };
 
   const showModal = (lang: LANGUAGES_AND_FRAMEWORKS) => {
@@ -46,7 +60,8 @@ const Home = () => {
     setModalState({
       ...modalState,
       title: content.title,
-      text: content.text,
+      experience: content.experience,
+      details: content.details,
       isVisible: true
     });
   };
@@ -63,15 +78,20 @@ const Home = () => {
     });
   }, []);
 
+  const modalDetails = modalState.details.map((detail) => {
+    return <p>{detail}</p>
+  });
+
   return (
     <PageContext.Provider value={contextState}>
       <div className={styles.crtPage}>
-        <SimpleModal isVisible={modalState.isVisible}>
+        <SimpleModal isVisible={modalState.isVisible} isClosing={modalState.isClosing}>
           <CloseIcon onClick={closeModal}/>
           <h2>{modalState.title}</h2>
-          <p>
-            {modalState.text}
-          </p>
+          <h3>
+            {modalState.experience}
+          </h3>
+          {modalDetails}
         </SimpleModal>
         <MainHeader></MainHeader>
         <main className={styles.main} style={{backgroundImage: `url(${backgroundImage})`}}>

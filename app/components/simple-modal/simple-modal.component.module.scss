@@ -1,28 +1,69 @@
-.simpleModal {
+
+.blurBackground {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.3);
+    align-items: center;
+    justify-content: center;
     opacity: 0;
     pointer-events: none;
     display: none;
+    position: absolute;
+    z-index: 9999;
+}
 
-    position: fixed;
-    top: 30%;
-    left: 30%;
+.simpleModal {
+    position: relative;
+    display: flex;
+    flex-direction: column;
     width: 40%;
     height: 40%;
-
-    min-width: 300px;
+    min-width: 320px;
+    max-width: 640px;
     min-height: 200px;
-
     border: 1px solid #000;
     background-color: #FFF;
     box-shadow: 3px 4px 0px #000;
     z-index: 9999;
+    padding: 32px;
+    height: fit-content;
 
-    padding: 12px;
+    h2, h3, p {
+        margin: 4px 0;
+    }
+    
 }
 
-.visible.simpleModal {
+.visible.blurBackground {
     opacity: 1;
-    pointer-events: inherit;
+    pointer-events: all;
     display: flex;
-    flex-direction: column;
+    animation: showBackdrop .3s ease-in-out 0s 1 forwards;
+
+    &.animateOut {
+        animation: adiosBackdrop .3s ease-in-out 0s 1 forwards;
+    }
+}
+
+@keyframes showBackdrop {
+    0%   {
+        backdrop-filter: blur(0px) invert(0);
+        opacity: 0;
+    }
+    100% {
+        backdrop-filter: blur(5px) invert(1);
+        opacity: 1;
+    }
+}
+
+@keyframes adiosBackdrop {
+    0%   {
+        backdrop-filter: blur(5px) invert(1);
+        opacity: 1;
+    }
+    100% {
+        backdrop-filter: blur(0px) invert(0);
+        opacity: 0;
+    }
 }
