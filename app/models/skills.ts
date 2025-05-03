@@ -1,8 +1,15 @@
+import { url } from "inspector";
+
+export type SkillLink = {
+    label: string;
+    url: string;
+}
 
 export type SkillDetails = {
     text: string,
     title: string,
-    details?: string
+    details?: string[],
+    links?: SkillLink 
 }
 
 export enum LANGUAGES_AND_FRAMEWORKS {
@@ -12,7 +19,6 @@ export enum LANGUAGES_AND_FRAMEWORKS {
     CSHARP = 'C#',
     SWIFT = 'Swift',
     RUBY = 'Ruby',
-    GO = 'Go',
     HTML_CSS = 'HTML5 / CSS3',
     REACT = 'React / Next',
     ANGULAR = 'Angular',
@@ -54,7 +60,7 @@ export const Skills = {
         title: 'Dart',
         experience: '2 years',
         details: [
-            `I love Dart, and I've used it to build applications with the Flutter framework, including one as a client project for Lennar while I was working at PricewaterhouseCoopers.`,
+            `I love Dart, and I've used it to build applications with the Flutter framework, including one as a client project for Lennar that is still on the Apple App Store while I was working at PricewaterhouseCoopers.`,
             `I am proficient at both Dart and Flutter, and can both architect and develop cross-platform mobile apps in it.`
         ]
     },
@@ -62,33 +68,42 @@ export const Skills = {
         title: 'C#',
         experience: '12 years',
         details: [
-            `C# and I go way back.  I have been developing in C# in 2004 when the Mono framework was first released.  I have used C# and the .Net framework to build applications at many companies, including for Raymond James and R. R. Donnelley.`
+            `C# and I go way back.  I have been developing in C# in 2004 when the Mono framework was first released.  I have used C# and the .Net framework to build applications at many companies, including for Raymond James and R. R. Donnelley.`,
+            `I am highly proficient at writing C# and .Net apps, and can both architect and develop enterprise-level software for it.`
         ]
     },
     [LANGUAGES_AND_FRAMEWORKS.SWIFT]: {
         title: 'Swift',
         experience: '1 year',
-        details: ['']
+        details: [
+            'I have worked with Swift and native iOS development to build apps for iPhones and the Apple Watch.  I have a current Apple Watch app released on the App Store that you can install.  I am able to read and write Swift with moderate proficiency.'
+        ],
+        links: [
+            {label: 'DieCast Watch', url: 'https://apps.apple.com/us/app/diecast-watch/id1533496780'}
+        ]
     },
     [LANGUAGES_AND_FRAMEWORKS.RUBY]: {
         title: 'Ruby',
         experience: '1 year',
-        details: ['']
-    },
-    [LANGUAGES_AND_FRAMEWORKS.GO]: {
-        title: 'Go',
-        experience: '1 year',
-        details: ['']
+        details: [
+            `I built and maintained a sweepstakes game website in Ruby On Rails for Transitions Lenses while I was a senior developer at FKQ Marketing.  I really enjoyed my time working with Ruby, and I would happily work on more RoR projects.  Unfortunately I rarely encounter Ruby in the wild these days, so I haven't had an opportunity to use it in a while.`
+        ]
     },
     [LANGUAGES_AND_FRAMEWORKS.HTML_CSS]: {
         title: 'HTML5 / CSS3',
         experience: '15 years',
-        details: ['']
+        details: [
+            `I would categorize myself as primarily a UX Developer, and most of the applications that I build use HTML and CSS.  I have worked directly with designers at Google, Carvana, PwC, and many more companies to build maintainable semantic HTML and clean CSS for a wide variety of production websites.`,
+            `I can build dang near anything in HTML and CSS, and I enjoy doing it.`
+        ]
     },
     [LANGUAGES_AND_FRAMEWORKS.REACT]: {
         title: 'React',
         experience: '6 years',
-        details: ['']
+        details: [
+            `I am extremely proficient at building apps with React, as well as its common supporting libraries like Redux and TanStack Query.  I have released multiple production apps for major companies in React.`,
+            `This website was built using NextJS which is a framework for React.`
+        ]
     },
     [LANGUAGES_AND_FRAMEWORKS.ANGULAR]: {
         title: 'Angular',
