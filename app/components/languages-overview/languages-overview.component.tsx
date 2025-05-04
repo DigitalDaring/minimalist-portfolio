@@ -35,10 +35,6 @@ const LanguagesOverview = ({onClick}: LanguagesOverviewProps) => {
             <FileIcon></FileIcon>
             Ruby
         </li>
-        <li onClick={() => onClick(LANGUAGES_AND_FRAMEWORKS.GO)}>
-            <FileIcon></FileIcon>
-            Go
-        </li>
         <li onClick={() => onClick(LANGUAGES_AND_FRAMEWORKS.HTML_CSS)}>
             <FileIcon></FileIcon>
             HTML5/CSS3

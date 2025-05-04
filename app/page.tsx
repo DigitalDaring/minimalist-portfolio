@@ -22,6 +22,7 @@ type ModalState = {
   details: string[];
   isVisible: boolean;
   isClosing: boolean;
+  isHuge: boolean;
 }
 
 const Home = () => {
@@ -32,7 +33,8 @@ const Home = () => {
     experience: '',
     details: [],
     isVisible: false,
-    isClosing: false
+    isClosing: false,
+    isHuge: false
   });
 
   const [contextState, setContextState] = useState<PortfolioContext>({
@@ -85,7 +87,9 @@ const Home = () => {
   return (
     <PageContext.Provider value={contextState}>
       <div className={styles.crtPage}>
-        <SimpleModal isVisible={modalState.isVisible} isClosing={modalState.isClosing}>
+        <SimpleModal isVisible={modalState.isVisible} 
+                     isClosing={modalState.isClosing}
+                     isHuge={modalState.isHuge}>
           <CloseIcon onClick={closeModal}/>
           <h2>{modalState.title}</h2>
           <h3>

@@ -5,9 +5,10 @@ export type SimpleModalProps = {
     children: ReactNode,
     isVisible: boolean,
     isClosing: boolean,
+    isHuge: boolean
 }
 
-const SimpleModal = ({children, isVisible, isClosing}: SimpleModalProps) => {
+const SimpleModal = ({children, isVisible, isClosing, isHuge}: SimpleModalProps) => {
 
     const classes = [styles.blurBackground];
     if (isVisible) {
@@ -15,6 +16,10 @@ const SimpleModal = ({children, isVisible, isClosing}: SimpleModalProps) => {
 
         if (isClosing) {
             classes.push(styles.animateOut);
+        }
+
+        if (isHuge) {
+            classes.push(styles.hugeModal);
         }
     }
     return <section className={classes.join(' ')}>
