@@ -18,19 +18,7 @@ const DatabasesOverview = ({onClick}: DatabasesOverviewProps) => {
         </li>
         <li onClick={() => onClick(LANGUAGES_AND_FRAMEWORKS.SQL)}>
             <FileIcon></FileIcon>
-            MS SQL
-        </li>
-        <li onClick={() => onClick(LANGUAGES_AND_FRAMEWORKS.COSMOSDB)}>
-            <FileIcon></FileIcon>
-            CosmosDB
-        </li>
-        <li onClick={() => onClick(LANGUAGES_AND_FRAMEWORKS.REDIS)}>
-            <FileIcon></FileIcon>
-            Redis
-        </li>
-        <li onClick={() => onClick(LANGUAGES_AND_FRAMEWORKS.SQLITE)}>
-            <FileIcon></FileIcon>
-            SQLite
+            SQL
         </li>
         <li onClick={() => onClick(LANGUAGES_AND_FRAMEWORKS.FIREBASE)}>
             <FileIcon></FileIcon>

@@ -32,9 +32,11 @@
 
 .white {
     background-color: #FFF;
+    pointer-events: all;
     border-left: 1px solid #000;
     border-bottom: 1px solid #000;
     background-blend-mode: lighten;
+    cursor: pointer;
     &:hover {
         background-blend-mode: normal;
     }
@@ -47,6 +49,7 @@
 .black {
    background-color: #FFF;
    pointer-events: all;
+   cursor: pointer;
    &:hover {
     background-color: #000;
    }

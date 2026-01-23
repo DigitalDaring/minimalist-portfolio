@@ -20,10 +20,6 @@ const FrameworksOverview = ({onClick}: FrameworksOverviewProps) => {
             <FolderIcon></FolderIcon>
             Angular
         </li>
-        <li onClick={() => onClick(LANGUAGES_AND_FRAMEWORKS.SVELTE)}>
-            <FolderIcon></FolderIcon>
-            Svelte
-        </li>
         <li onClick={() => onClick(LANGUAGES_AND_FRAMEWORKS.FLUTTER)}>
             <FolderIcon></FolderIcon>
             Flutter

@@ -5,3 +5,9 @@
     max-width: 400px;
     justify-content: center;
 }
+
+@media (max-width: 719px)  {
+    .window {
+        max-width: 100%;
+    }
+}

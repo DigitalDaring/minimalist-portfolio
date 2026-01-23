@@ -13,7 +13,7 @@ import SimpleModal from './components/simple-modal/simple-modal.component';
 import CloseIcon from './components/icons/close-icon.component';
 import { generateSpriteSheet } from './canvas-magic/icons';
 import { PortfolioContext, PageContext } from './context';
-import { LANGUAGES_AND_FRAMEWORKS, Skills } from './models/skills';
+import { LANGUAGES_AND_FRAMEWORKS, SkillDetails, Skills } from './models/skills';
 import {unmute} from './sound-magic/unmute';
 
 type ModalState = {
@@ -58,12 +58,12 @@ const Home = () => {
   };
 
   const showModal = (lang: LANGUAGES_AND_FRAMEWORKS) => {
-    const content = Skills[lang];
+    const content = Skills[lang] as SkillDetails;
     setModalState({
       ...modalState,
       title: content.title,
       experience: content.experience,
-      details: content.details,
+      details: content.details || [],
       isVisible: true
     });
   };

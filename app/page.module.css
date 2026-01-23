@@ -54,7 +54,7 @@
   }
 }
 
-@media (min-width: 600px) {
+@media (min-width: 720px) {
   .main {
     display: grid;
     grid-template-columns: auto auto auto;
