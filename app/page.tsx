@@ -47,7 +47,7 @@ const Home = () => {
   });
 
   const [musicState, setMusicState] = useState<MusicState>({
-    lastNotePlayed: 'C3'
+    lastNotePlayed: ''
   });
   
   const closeModal = () => {

@@ -25,7 +25,6 @@ const PianoOctave = ({onKeyClicked}: PianoProps) => {
         setPianoState({readyToPlay: true, audioContext});
     }
 
-
     useEffect(() => {
         let globalAudioContext = (window as any).globalAudioContext;
         if (globalAudioContext == null) {
@@ -70,7 +69,7 @@ const PianoOctave = ({onKeyClicked}: PianoProps) => {
             playFrequency(note.hz, audioContext, () => {});
         }
 
-        onKeyClicked(note.name.toUpperCase() + '3');
+        onKeyClicked(note.code);
     }
 
     return  <div className={styles.pianoStack}>

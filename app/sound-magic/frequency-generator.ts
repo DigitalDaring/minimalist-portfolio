@@ -8,7 +8,8 @@
 export type Note = {
     hz: number,
     name: string,
-    line?: number
+    line?: number,
+    code: string
 };
 
 export type NoteList = {
@@ -28,19 +29,18 @@ export type NoteList = {
 };
 
 export const notes = {
-    c:  { hz: 261.626, name: 'C' },
-    cS: { hz: 277.183, name: 'C#' },
-    d:  { hz: 293.665, name: 'D' },
-    dS: { hz: 311.127, name: 'D#' },
-    e:  { hz: 329.628, name: 'E' },
-    f:  { hz: 349.228, name: 'F' },
-    fS: { hz: 369.994, name: 'F#' },
-    g:  { hz: 391.995, name: 'G' },
-    gS: { hz: 415.305, name: 'G#' },
-    a:  { hz: 440.000, name: 'A' },
-    aS: { hz: 466.164, name: 'A#' },
-    bF: { hz: 466.164, name: 'Bb' },
-    b:  { hz: 493.883, name: 'B' },
+    c:  { hz: 261.626, name: 'C', code: 'C4'},
+    cS: { hz: 277.183, name: 'C#', code: 'Cs4'},
+    d:  { hz: 293.665, name: 'D', code: 'D4'},
+    dS: { hz: 311.127, name: 'D#', code: 'Ds4'},
+    e:  { hz: 329.628, name: 'E', code: 'E4'},
+    f:  { hz: 349.228, name: 'F', code: 'F4'},
+    fS: { hz: 369.994, name: 'F#', code: 'Fs4'},
+    g:  { hz: 391.995, name: 'G', code: 'G4'},
+    gS: { hz: 415.305, name: 'G#', code: 'Gs4'},
+    a:  { hz: 440.000, name: 'A', code: 'A5'},
+    aS: { hz: 466.164, name: 'A#', code: 'As5'},
+    b:  { hz: 493.883, name: 'B', code: 'B5'},
 } as NoteList;
 
 export const notesArray =  [notes.c, notes.cS, notes.d, notes.dS, notes.e, notes.f, notes.fS, notes.g, notes.gS, notes.a, notes.aS, notes.b];
@@ -60,5 +60,4 @@ export const playFrequency = (f: number, audioContext: AudioContext, callback: (
 export const clearNowPlaying = (audioContext: AudioContext) => {
     const gainNode = audioContext.createGain();
     gainNode.gain.exponentialRampToValueAtTime(0.00001, audioContext.currentTime);
-    console.log('state: ', audioContext.state);
 }
