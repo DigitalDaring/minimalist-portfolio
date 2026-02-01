@@ -15,6 +15,7 @@ import { generateSpriteSheet } from './canvas-magic/icons';
 import { PortfolioContext, PageContext } from './context';
 import { LANGUAGES_AND_FRAMEWORKS, SkillDetails, Skills } from './models/skills';
 import {unmute} from './sound-magic/unmute';
+import { Clef } from './components/clef/clef.component';
 
 type ModalState = {
   title: string;
@@ -23,6 +24,10 @@ type ModalState = {
   isVisible: boolean;
   isClosing: boolean;
   isHuge: boolean;
+}
+
+type MusicState = {
+  lastNotePlayed: string;
 }
 
 const Home = () => {
@@ -39,6 +44,10 @@ const Home = () => {
 
   const [contextState, setContextState] = useState<PortfolioContext>({
     spriteSheet: undefined
+  });
+
+  const [musicState, setMusicState] = useState<MusicState>({
+    lastNotePlayed: 'C3'
   });
   
   const closeModal = () => {
@@ -83,6 +92,11 @@ const Home = () => {
   const modalDetails = modalState.details.map((detail) => {
     return <p>{detail}</p>
   });
+
+  const pianoOutput = <section className={styles.pianoSection}>
+    <PianoOctave onKeyClicked={(key: string) => setMusicState({lastNotePlayed: key})}/>
+    <Clef lastNotePlayed={musicState.lastNotePlayed}/>
+  </section>
 
   return (
     <PageContext.Provider value={contextState}>
@@ -129,7 +143,7 @@ const Home = () => {
               subtitle1='Piano'
               subtitle2='Banjo'
               subtitle3='Guitar'
-              content={<PianoOctave/>}
+              content={pianoOutput}
               >
             </StylishWindow>
           </section>

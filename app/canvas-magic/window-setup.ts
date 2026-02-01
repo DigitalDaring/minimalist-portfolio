@@ -6,7 +6,8 @@ const setupWindowBackgrounds = () => {
             dithered3: '',
             dithered4: '',
             lines: '',
-            spriteSheet: ''
+            spriteSheet: '',
+            sheetMusic: ''
         };
         window.icons = window.icons || {
             folder: ''

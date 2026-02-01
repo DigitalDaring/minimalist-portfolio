@@ -6,12 +6,16 @@ import { useEffect, useState } from 'react';
 import { unmute } from '@/app/sound-magic/unmute';
 import { Note, notes, notesArray, playFrequency } from '@/app/sound-magic/frequency-generator';
 
+type PianoProps = {
+    onKeyClicked: (key_code: string) => void
+};
+
 type PianoState = {
     readyToPlay: boolean,
-    audioContext?: AudioContext
-}
+    audioContext?: AudioContext,
+};
 
-const PianoOctave = () => {
+const PianoOctave = ({onKeyClicked}: PianoProps) => {
 
     const [pianoState, setPianoState] = useState<PianoState>({
         readyToPlay: false, audioContext: undefined
@@ -63,9 +67,10 @@ const PianoOctave = () => {
     const playNote = (note: Note) => {
         const {readyToPlay, audioContext} = pianoState;
         if (readyToPlay && audioContext != null) {
-            playFrequency(note.hz, audioContext, () => {
-            });
+            playFrequency(note.hz, audioContext, () => {});
         }
+
+        onKeyClicked(note.name.toUpperCase() + '3');
     }
 
     return  <div className={styles.pianoStack}>
