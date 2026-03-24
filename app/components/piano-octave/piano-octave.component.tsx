@@ -1,10 +1,10 @@
 'use client';
 
-import { getDitheringImg1, getDitheringImg2, getDitheringImg3, getDitheringImg4 } from '@/app/canvas-magic/dithering';
+import { getDitheringImg1, getDitheringImg2, getDitheringImg3, getDitheringImg4 } from '@/app/sourcery/canvas-magic/dithering';
 import styles from './piano-octave.component.module.scss';
 import { useEffect, useState } from 'react';
-import { unmute } from '@/app/sound-magic/unmute';
-import { Note, notes, notesArray, playFrequency } from '@/app/sound-magic/frequency-generator';
+import { unmute } from '@/app/sourcery/sound-magic/unmute';
+import { Note, notes, notesArray, playFrequency } from '@/app/sourcery/sound-magic/frequency-generator';
 
 type PianoProps = {
     onKeyClicked: (key_code: string) => void

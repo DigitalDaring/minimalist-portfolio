@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { Chakra_Petch } from 'next/font/google'
-import setupWindowBackgrounds from './canvas-magic/window-setup';
+import setupWindowBackgrounds from './sourcery/canvas-magic/window-setup';
 
 declare global {
   interface Window { 

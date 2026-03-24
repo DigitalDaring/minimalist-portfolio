@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import styles from './stylish-window.component.module.scss';
-import { getLinesImg } from '@/app/canvas-magic/lines';
+import { getLinesImg } from '@/app/sourcery/canvas-magic/lines';
 import PropTypes from 'prop-types';
 
 export type StylishWindowProps = {

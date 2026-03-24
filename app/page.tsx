@@ -2,7 +2,7 @@
 import styles from './page.module.css';
 import MainHeader from './components/main-header/main-header.component';
 import StylishWindow from './components/stylish-window/stylish-window.component';
-import { getDitheringImg4 } from './canvas-magic/dithering';
+import { getDitheringImg4 } from './sourcery/canvas-magic/dithering';
 import { useEffect, useState, useContext } from 'react';
 import { } from 'react';
 import PianoOctave from './components/piano-octave/piano-octave.component';
@@ -11,11 +11,12 @@ import FrameworksOverview from './components/frameworks-overview/frameworks-over
 import DatabasesOverview from './components/databases-overview/databases-overview.component';
 import SimpleModal from './components/simple-modal/simple-modal.component';
 import CloseIcon from './components/icons/close-icon.component';
-import { generateSpriteSheet } from './canvas-magic/icons';
+import { generateSpriteSheet } from './sourcery/canvas-magic/icons';
 import { PortfolioContext, PageContext } from './context';
 import { LANGUAGES_AND_FRAMEWORKS, SkillDetails, Skills } from './models/skills';
-import {unmute} from './sound-magic/unmute';
+import {unmute} from './sourcery/sound-magic/unmute';
 import { Clef } from './components/clef/clef.component';
+import { onClickOutside } from './sourcery/page-magic/click-outside';
 
 type ModalState = {
   title: string;
@@ -24,6 +25,7 @@ type ModalState = {
   isVisible: boolean;
   isClosing: boolean;
   isHuge: boolean;
+  isGlobalClickConfigured: boolean;
 }
 
 type MusicState = {
@@ -39,7 +41,8 @@ const Home = () => {
     details: [],
     isVisible: false,
     isClosing: false,
-    isHuge: false
+    isHuge: false,
+    isGlobalClickConfigured: false
   });
 
   const [contextState, setContextState] = useState<PortfolioContext>({
@@ -49,21 +52,26 @@ const Home = () => {
   const [musicState, setMusicState] = useState<MusicState>({
     lastNotePlayed: ''
   });
-  
-  const closeModal = () => {
-    setModalState({
-      ...modalState,
-      isVisible: true,
-      isClosing: true
-    });
 
-    window.setTimeout(() => {
+  const closeModal = () => {
+    const {isVisible} = modalState;
+    console.log('closing modal', isVisible);
+
+    if (isVisible) {
       setModalState({
         ...modalState,
-        isVisible: false,
-        isClosing: false
+        isVisible: true,
+        isClosing: true
       });
-    }, 500);
+  
+      window.setTimeout(() => {
+        setModalState({
+          ...modalState,
+          isVisible: false,
+          isClosing: false
+        });
+      }, 500);
+    }
   };
 
   const showModal = (lang: LANGUAGES_AND_FRAMEWORKS) => {
@@ -75,6 +83,15 @@ const Home = () => {
       details: content.details || [],
       isVisible: true
     });
+
+    const theModal = document.getElementById('SkillsModal');
+    if (theModal != null && !modalState.isGlobalClickConfigured) {
+      onClickOutside(theModal, () => {
+        closeModal();
+      });
+      const newState = {...modalState, isGlobalClickConfigured: true};
+      setModalState(newState);
+    } 
   };
 
 

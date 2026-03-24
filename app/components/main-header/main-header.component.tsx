@@ -1,26 +1,51 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './main-header.component.module.scss';
+import { onClickOutside } from '../../sourcery/page-magic/click-outside';
 
 enum NavHeader {
-    ABOUT = 'about',
+    //ABOUT = 'about', //TODO:  expand content when I have time
     EXPERIMENTS = 'experiments',
-    CV = 'cv'
+    CV = 'cv',
 }
 
 const MainHeader = () => {
 
     const [navState, setNavState] = useState({
-        [NavHeader.ABOUT]: false,
         [NavHeader.EXPERIMENTS]: false,
-        [NavHeader.CV]: false
+        [NavHeader.CV]: false,
+        isGlobalClickConfigured: false
     });
+
+    const closeAllnavs = () => {
+        const newState = {...navState};
+        newState[NavHeader.EXPERIMENTS] = false;
+        newState[NavHeader.CV] = false;
+        setNavState(newState);
+    }
+    
+    useEffect(() => {
+        const {isGlobalClickConfigured} = navState;
+        console.log('is global nav click configured?', isGlobalClickConfigured);
+        if (!isGlobalClickConfigured) {
+            // this should only ever run once
+            const theNav = document.getElementById('HeaderMenu');
+            if (theNav != null) {
+                onClickOutside(theNav, () => {
+                    closeAllnavs();
+                });
+            }
+            setNavState({...navState, isGlobalClickConfigured: true});
+        }
+    }, [setNavState]);
 
     const toggleNav = (toToggle: NavHeader) => {
         const isAlreadyOpen = navState[toToggle];
+        const {isGlobalClickConfigured} = navState;
         const newState = {
-            [NavHeader.ABOUT]: false,
+            //[NavHeader.ABOUT]: false,
             [NavHeader.EXPERIMENTS]: false,
-            [NavHeader.CV]: false
+            [NavHeader.CV]: false,
+            isGlobalClickConfigured
         }
 
         // if the nav wasn't already open, open it!
@@ -31,30 +56,18 @@ const MainHeader = () => {
         setNavState(newState);
     };
 
-
-    return <header className={styles.fixedHeader}>
-        <nav onClick={() => toggleNav(NavHeader.ABOUT)}>
-            About
-            <ul className={navState[NavHeader.ABOUT] ? styles.expanded : ''}>
-                <li>
-                    About This Site
-                </li>
-                <li>
-                    About The Author
-                </li>
-            </ul>
-        </nav>
+    return <header id="HeaderMenu" className={styles.fixedHeader}>
         <nav onClick={() => toggleNav(NavHeader.EXPERIMENTS)}>
             Experiments
             <ul className={navState[NavHeader.EXPERIMENTS] ? styles.expanded : ''}>
                 <li>
-                    Music Visualizer
+                    <a target="_blank" href="https://www.youtube.com/@EdmundMakesMusic">Music</a>
                 </li>
                 <li>
-                    Image Dots
+                    <a target="_blank" href="https://github.com/DigitalDaring">GitHub</a>
                 </li>
                 <li>
-                    Live Video Filters
+                    <a target="_blank" href="https://gitlab.com/DigitalDaring">GitLab</a>
                 </li>
             </ul>
         </nav>
@@ -62,7 +75,7 @@ const MainHeader = () => {
             Curriculum Vitae
             <ul className={navState[NavHeader.CV] ? styles.expanded : ''}>
                 <li>
-                    Download PDF
+                    <a target="_blank" href="edmund-bates-resume-2025.pdf">View PDF</a>
                 </li>
             </ul>
         </nav>

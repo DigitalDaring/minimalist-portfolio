@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import styles from './clef.module.scss';
 import { PageContext } from '@/app/context';
-import { getIconOffset, SiteIconName } from '@/app/canvas-magic/icons';
+import { getIconOffset, SiteIconName } from '@/app/sourcery/canvas-magic/icons';
 type Note = {
     name: string;
     code: string;

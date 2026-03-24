@@ -23,7 +23,7 @@ const SimpleModal = ({children, isVisible, isClosing, isHuge}: SimpleModalProps)
         }
     }
     return <section className={classes.join(' ')}>
-        <section className={styles.simpleModal}>
+        <section id="SkillsModal" className={styles.simpleModal}>
             {children}
         </section>
     </section>

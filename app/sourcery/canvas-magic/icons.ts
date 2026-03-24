@@ -372,7 +372,8 @@ let isSpriteSheetGenerated = false;
 const generateSpriteSheet = (): Promise<string> => {
     const renderQueue = iconList.map((icon) => ({
         height: icon.bits.length,
-        width: icon.bits[0].length,
+        // technically every icon should have the same number of columns per row but...
+        width: icon.bits.map(b => b.length).reduce((cur, prev) => Math.max(cur, prev)),
         icon: icon.bits
     }));
 
