@@ -11,28 +11,29 @@ const FrameworksOverview = ({onClick}: FrameworksOverviewProps) => {
 
     const classes = [styles.frameworkList, windowStyles.window];
 
+
     return <ul className={classes.join(' ')}>
-        <li onClick={() => onClick(LANGUAGES_AND_FRAMEWORKS.REACT)}>
+        <li onTouchStart={() => onClick(LANGUAGES_AND_FRAMEWORKS.REACT)} onClick={() => onClick(LANGUAGES_AND_FRAMEWORKS.REACT)}>
             <FolderIcon></FolderIcon>
             React / Next
         </li>
-        <li onClick={() => onClick(LANGUAGES_AND_FRAMEWORKS.ANGULAR)}>
+        <li onTouchStart={() => onClick(LANGUAGES_AND_FRAMEWORKS.ANGULAR)} onClick={() => onClick(LANGUAGES_AND_FRAMEWORKS.ANGULAR)}>
             <FolderIcon></FolderIcon>
             Angular
         </li>
-        <li onClick={() => onClick(LANGUAGES_AND_FRAMEWORKS.FLUTTER)}>
+        <li onTouchStart={() => onClick(LANGUAGES_AND_FRAMEWORKS.FLUTTER)} onClick={() => onClick(LANGUAGES_AND_FRAMEWORKS.FLUTTER)}>
             <FolderIcon></FolderIcon>
             Flutter
         </li>
-        <li onClick={() => onClick(LANGUAGES_AND_FRAMEWORKS.NATIVEIOS)}>
+        <li onTouchStart={() => onClick(LANGUAGES_AND_FRAMEWORKS.NATIVEIOS)} onClick={() => onClick(LANGUAGES_AND_FRAMEWORKS.NATIVEIOS)}>
             <FolderIcon></FolderIcon>
             Native iOS
         </li>
-        <li onClick={() => onClick(LANGUAGES_AND_FRAMEWORKS.NODE)}>
+        <li onTouchStart={() => onClick(LANGUAGES_AND_FRAMEWORKS.NODE)} onClick={() => onClick(LANGUAGES_AND_FRAMEWORKS.NODE)}>
             <FolderIcon></FolderIcon>
             Node
         </li>
-        <li onClick={() => onClick(LANGUAGES_AND_FRAMEWORKS.DOT_NET)}>
+        <li onTouchStart={() => onClick(LANGUAGES_AND_FRAMEWORKS.DOT_NET)} onClick={() => onClick(LANGUAGES_AND_FRAMEWORKS.DOT_NET)}>
             <FolderIcon></FolderIcon>
             .Net
         </li>

@@ -55,7 +55,6 @@ const Home = () => {
 
   const closeModal = () => {
     const {isVisible} = modalState;
-    console.log('closing modal', isVisible);
 
     if (isVisible) {
       setModalState({
@@ -85,6 +84,7 @@ const Home = () => {
     });
 
     const theModal = document.getElementById('SkillsModal');
+    console.log(content);
     if (theModal != null && !modalState.isGlobalClickConfigured) {
       onClickOutside(theModal, () => {
         closeModal();
@@ -106,8 +106,8 @@ const Home = () => {
     });
   }, []);
 
-  const modalDetails = modalState.details.map((detail) => {
-    return <p>{detail}</p>
+  const modalDetails = modalState.details.map((detail, idx) => {
+    return <p key={idx}>{detail}</p>
   });
 
   const pianoOutput = <section className={styles.pianoSection}>

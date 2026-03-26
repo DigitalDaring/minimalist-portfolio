@@ -1,5 +1,5 @@
 import FileIcon from '../icons/file-icon.component';
-import styles from './frameworks-overview.component.module.scss';
+import styles from './databases-overview.component.module.scss';
 import windowStyles from '../../styles/window.module.scss';
 import { LANGUAGES_AND_FRAMEWORKS } from '@/app/models/skills';
 
@@ -12,15 +12,15 @@ const DatabasesOverview = ({onClick}: DatabasesOverviewProps) => {
     const classes = [styles.databaseList, windowStyles.window];
 
     return <ul className={classes.join(' ')}>
-        <li onClick={() => onClick(LANGUAGES_AND_FRAMEWORKS.MONGO)}>
+        <li onTouchStart={() => onClick(LANGUAGES_AND_FRAMEWORKS.MONGO)} onClick={() => onClick(LANGUAGES_AND_FRAMEWORKS.MONGO)}>
             <FileIcon></FileIcon>
             MongoDB
         </li>
-        <li onClick={() => onClick(LANGUAGES_AND_FRAMEWORKS.SQL)}>
+        <li onTouchStart={() => onClick(LANGUAGES_AND_FRAMEWORKS.SQL)} onClick={() => onClick(LANGUAGES_AND_FRAMEWORKS.SQL)}>
             <FileIcon></FileIcon>
             SQL
         </li>
-        <li onClick={() => onClick(LANGUAGES_AND_FRAMEWORKS.FIREBASE)}>
+        <li onTouchStart={() => onClick(LANGUAGES_AND_FRAMEWORKS.FIREBASE)} onClick={() => onClick(LANGUAGES_AND_FRAMEWORKS.FIREBASE)}>
             <FileIcon></FileIcon>
             Firebase
         </li>

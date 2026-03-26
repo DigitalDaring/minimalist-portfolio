@@ -22,7 +22,7 @@ const CloseIcon = ({onClick}: CloseIconProps) => {
         setBackgroundOffset({...backgroundOffset, x: normalOffset});
     }
 
-    return <div onClick={onClick} onMouseOver={enableHoverEffect} onMouseLeave={disableHoverEffect} className={styles.closeIcon} style={{backgroundPositionX: `${backgroundOffset.x}px`, backgroundPositionY: `${backgroundOffset.y}px`, backgroundImage: `url(${spriteSheet})`}}></div>;
+    return <div onClick={onClick} onTouchStart={onClick} onMouseOver={enableHoverEffect} onMouseLeave={disableHoverEffect} className={styles.closeIcon} style={{backgroundPositionX: `${backgroundOffset.x}px`, backgroundPositionY: `${backgroundOffset.y}px`, backgroundImage: `url(${spriteSheet})`}}></div>;
 };
 
 export default CloseIcon;
