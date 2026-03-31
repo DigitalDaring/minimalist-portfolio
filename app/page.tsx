@@ -59,7 +59,6 @@ const Home = () => {
     if (isVisible) {
       setModalState({
         ...modalState,
-        isVisible: true,
         isClosing: true
       });
   
@@ -75,23 +74,23 @@ const Home = () => {
 
   const showModal = (lang: LANGUAGES_AND_FRAMEWORKS) => {
     const content = Skills[lang] as SkillDetails;
-    setModalState({
-      ...modalState,
+    const newState = {
+      ...modalState, 
       title: content.title,
       experience: content.experience,
       details: content.details || [],
       isVisible: true
-    });
+    }
 
     const theModal = document.getElementById('SkillsModal');
-    console.log(content);
     if (theModal != null && !modalState.isGlobalClickConfigured) {
       onClickOutside(theModal, () => {
         closeModal();
       });
-      const newState = {...modalState, isGlobalClickConfigured: true};
-      setModalState(newState);
+      newState.isGlobalClickConfigured = true;
     } 
+
+    setModalState(newState);
   };
 
 
